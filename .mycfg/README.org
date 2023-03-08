@@ -1,0 +1,38 @@
+* Configuration files
+
+Follow: https://www.atlassian.com/git/tutorials/dotfiles
+
+** Create from scratch
+#+begin_src sh
+git init --bare $HOME/.mycfg
+alias mycfg='/usr/bin/git --git-dir=$HOME/.mycfg/ --work-tree=$HOME'
+mycfg config --local status.showUntrackedFiles no
+echo "alias config='/usr/bin/git " \
+    "--git-dir=$HOME/.mycfg/ " \
+    "--work-tree=$HOME'" >> $HOME/.zshrc
+#+end_src
+
+** Import existing:
+#+begin_src sh
+alias mycfg='/usr/bin/git --git-dir=$HOME/.mycfg/ --work-tree=$HOME'
+echo ".mycfg" >> .gitignore
+git clone --bare <git-repo-url> $HOME/.mycfg
+mycfg checkout
+mycfg config --local status.showUntrackedFiles no
+#+end_src
+*** If checkout failed because of existing files
+#+begin_src sh
+mkdir -p .mycfg-backup && \
+  mycfg checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
+  xargs -I{} mv {} .mycfg-backup/{}
+mycfg checkout
+#+end_src
+** Usage
+Instead of ~git~ use ~mycfg~:
+#+begin_src shell
+mycfg status
+mycfg add files
+mycfg commit -m"message"
+mycfg push
+mycfg fetch
+#+end_src
