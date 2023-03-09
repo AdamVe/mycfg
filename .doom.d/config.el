@@ -86,3 +86,7 @@
  :leader
  :prefix "o"
  :desc "Switch to project sidebar" "o" #'treemacs-select-window)
+
+(setq-hook! 'c++-mode-hook +format-with-lsp nil)
+
+(setq confirm-kill-emacs nil)

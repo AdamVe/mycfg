@@ -17,7 +17,7 @@ ZSH_THEME="gnzh"
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
 # Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
+CASE_SENSITIVE="true"
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
@@ -101,6 +101,10 @@ alias zshconfig="emacs ~/.zshrc"
 alias ohmyzsh="emacs ~/.oh-my-zsh"
 alias mycfg='/usr/bin/git --git-dir=$HOME/.mycfg --work-tree=$HOME'
 
+if [ -f ~/.zshrc.local ]; then
+    source ~/.zshrc.local
+fi
+
 # use local ghcup installation
 if [ -f ~/.ghcup/env ]; then
     source ~/.ghcup/env
@@ -108,6 +112,10 @@ fi
 
 if [ -f ~/.aliases ]; then
     source ~/.aliases
+fi
+
+if [ -d ~/.emacs.d/bin ]; then
+    export PATH=$PATH:$HOME/.emacs.d/bin
 fi
 
 if [ -d ~/Applications/bin ]; then
