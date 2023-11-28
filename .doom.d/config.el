@@ -20,7 +20,7 @@
 (setq doom-font (font-spec :family "JetBrains Mono" :size 18)
       doom-big-font (font-spec :family "JetBrains Mono" :size 24)
       doom-variable-pitch-font (font-spec :family "Overpass" :size 18)
-      doom-unicode-font (font-spec :family "JuliaMono")
+      doom-symbol-font (font-spec :family "JuliaMono")
       doom-serif-font (font-spec :family "IBM Plex Mono" :size 22 :weight 'light)
       )
 
